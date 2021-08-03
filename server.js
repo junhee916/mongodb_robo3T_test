@@ -3,11 +3,16 @@ const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const path = require('path')
+const static = require('serve-static')
 
 const userRouter = require('./router/user')
 
 const connectDB = require('./config/database')
 connectDB()
+
+// connected html 
+app.use('/', static(path.join(__dirname, 'html')))
 
 // middleware
 app.use(bodyParser.json())
